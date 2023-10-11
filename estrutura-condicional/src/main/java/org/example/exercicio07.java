@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public class exercicio07 {
+public class Exercicio07 {
 
 //    7) Escreva um algoritmo que leia três valores inteiros e mostre-os em ordem decrescente.
 
