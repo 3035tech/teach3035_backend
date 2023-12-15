@@ -1,0 +1,58 @@
+criação da tabela cliente: 
+
+CREATE TABLE customers (
+    id SERIAL PRIMARY KEY,
+    "name" VARCHAR(50),
+    last_name VARCHAR(50),
+    tax_id VARCHAR(14),
+    date_of_birth DATE,
+    phone VARCHAR(50),
+    mail VARCHAR(80)
+);
+
+
+criação da tabela endereço:
+
+CREATE TABLE address (
+    id SERIAL PRIMARY KEY,
+    country VARCHAR(80),
+    state VARCHAR(100),
+    zip_code INT,
+    city VARCHAR(100),
+    number INT,
+    complement VARCHAR(80),
+    address_line VARCHAR(100),
+    district VARCHAR(80),
+    customer_id INT UNIQUE,
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
+
+criação da tabela pedidos:
+
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    number_order VARCHAR(50),
+    value_order INT,
+    date_of_order DATE,
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
+criação da tabela produto e relação n-n:
+
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    product_name VARCHAR(100),
+    product_description TEXT,
+    product_price NUMERIC(10, 2)
+);
+
+CREATE TABLE products_orders (
+    product_id INT,
+    order_id INT,
+    PRIMARY KEY (product_id, order_id),
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (order_id) REFERENCES orders(id)
+);
+
